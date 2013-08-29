@@ -137,7 +137,7 @@ PRODUCT_AAPT_PREF_CONFIG := xhdpi
 PRODUCT_LOCALES += en_US
 
 # Inherit configs
-$(call inherit-product-if-exists, vendor/htc/vigor/vigor-vendor.mk)
+$(call inherit-product-if-exists, vendor/htc-vigor/vigor-vendor.mk)
 $(call inherit-product, device/htc/msm8660-common/msm8660.mk)
 $(call inherit-product, frameworks/native/build/phone-xhdpi-1024-dalvik-heap.mk)
 $(call inherit-product, build/target/product/full_base_telephony.mk)
