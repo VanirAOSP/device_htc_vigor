@@ -6,8 +6,10 @@ ro.sf.lcd_density = 320
 
 # RIL properties
 # cm props
+ril.subscription.types=NV,RUIM
+ro.telephony.ril_class=HTCQualcommRIL
+ro.telephony.ril.v3=signalstrength
 mobiledata.interfaces = rmnet0,rmnet_sdio0
-ro.telephony.ril_class = HTCVigorQualcommRIL
 ro.telephony.default_network = 8
 telephony.lteOnCdmaDevice = 1
 
@@ -159,3 +161,5 @@ windowsmgr.max_events_per_sec=150
 ro.max.fling_velocity=12000
 ro.min.fling_velocity=8000
 view.scroll_friction=0
+
+
