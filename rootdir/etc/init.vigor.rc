@@ -67,9 +67,6 @@ on early-init
     # Force loading of modem and Q6 images
     write /dev/smd_pkt_loopback 1
 
-    # Proximity calibration values
-    write /sys/devices/virtual/optical_sensors/proximity/ps_kadc "0x0 0xFFFF3C2D"
-
 on init
     mkdir /devlog 0700 root root
 
@@ -225,6 +222,10 @@ on boot
     # sync fs
     chown system /sys/devices/platform/rs300000a7.65536/force_sync
     chown system /sys/devices/platform/rs300000a7.65536/sync_sts
+    
+    # Vibrator
+    chown system system sys/devices/platform/msm_ssbi.0/pm8058-core/pm8xxx-vib/amp
+    chmod 666 sys/devices/platform/msm_ssbi.0/pm8058-core/pm8xxx-vib/amp
 
 # Services start here
 
