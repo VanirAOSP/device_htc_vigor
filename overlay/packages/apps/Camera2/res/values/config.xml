@@ -14,8 +14,8 @@
      limitations under the License.
 -->
 
+<!-- camera app resources. -->
 <resources>
-    <!-- Volume Rocker Wake Support. Some devices do not support (PMU) this.
-         Setting to false will disable Volume Rocker Wake support -->
-    <!-- <bool name="config_show_volumeRockerWake">true</bool> -->
+    <!-- HTC Camcorder Mode -->
+    <bool name="needsHTCCamMode">true</bool>
 </resources>

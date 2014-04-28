@@ -18,10 +18,7 @@
 DEVICE_PACKAGE_OVERLAYS := device/htc/vigor/overlay
 
 # The gps config appropriate for this device
-PRODUCT_COPY_FILES := device/common/gps/gps.conf_US_SUPL:system/etc/gps.conf
-
-# CDMA/GSM Combined APNs list. Keep this as it works!
-# PRODUCT_COPY_FILES += device/htc/vigor/prebuilt/apns-conf.xml:system/etc/apns-conf.xml
+PRODUCT_COPY_FILES := device/htc/vigor/gps/gps.conf:system/etc/gps.conf
 
 # Recovery
 PRODUCT_PACKAGES += \
@@ -64,6 +61,10 @@ PRODUCT_COPY_FILES += \
     device/htc/msm8660-common/configs/media_codecs.xml:system/etc/media_codecs.xml \
     device/htc/msm8660-common/configs/media_profiles.xml:system/etc/media_profiles.xml
 
+# Netflix hack
+PRODUCT_COPY_FILES += \
+    device/htc/vigor/configs/98netflix:system/etc/init.d/98netflix
+
 # HTC BT Audio tune
 PRODUCT_COPY_FILES += device/htc/vigor/dsp/AudioBTID.csv:system/etc/AudioBTID.csv
 
@@ -72,6 +73,7 @@ PRODUCT_PACKAGES += \
     hcitool \
     hciconfig \
     gps.vigor \
+    lights.vigor \
     Stk \
     FileManager
 
@@ -120,11 +122,20 @@ PRODUCT_COPY_FILES += device/htc/vigor/configs/adreno_config.txt:system/etc/adre
 # QC thermald config
 PRODUCT_COPY_FILES += device/htc/vigor/prebuilt/thermald.conf:system/etc/thermald.conf
 
+# Wifi
+PRODUCT_COPY_FILES += \
+    device/htc/vigor/configs/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf \
+    device/htc/vigor/configs/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf
+
 PRODUCT_PROPERTY_OVERRIDES := \
 wifi.interface=wlan0 \
 
 BOARD_WLAN_DEVICE_REV := bcm4330_b2
 WIFI_BAND := 802_11_ABG
+
+# Bluetooth firmware
+$(call inherit-product, device/htc/msm8660-common/bcm_hcd.mk)
+
 $(call inherit-product-if-exists, hardware/broadcom/wlan/bcmdhd/firmware/bcm4330/device-bcm.mk)
 
 # We have enough storage space to hold precise GC data

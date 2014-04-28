@@ -32,10 +32,9 @@ TARGET_BOOTLOADER_BOARD_NAME := vigor
 BOARD_WANTS_EMMC_BOOT := true
 
 # Kernel
-
 BOARD_KERNEL_BASE := 0x48800000
 BOARD_KERNEL_PAGE_SIZE := 2048
-BOARD_KERNEL_CMDLINE := console=ttyHSL3 androidboot.hardware=vigor no_console_suspend=1
+BOARD_KERNEL_CMDLINE := console=ttyHSL3 androidboot.hardware=vigor no_console_suspend=1 androidboot.selinux=permissive
 TARGET_KERNEL_VERSION := 3.0
 TARGET_KERNEL_CONFIG := vigor_aosp_defconfig
 TARGET_KERNEL_SOURCE := kernel/htc/vigor-$(TARGET_KERNEL_VERSION)
@@ -52,9 +51,6 @@ BOARD_RIL_NO_CELLINFOLIST:=true
 
 # HTCLOG
 COMMON_GLOBAL_CFLAGS += -DHTCLOG
-
-# Display
-TARGET_QCOM_DISPLAY_VARIANT := legacy
 
 # Audio
 TARGET_QCOM_AUDIO_VARIANT := caf
@@ -92,6 +88,7 @@ TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/class/android_usb/android0/f_mass_storag
 
 # Recovery
 TARGET_RECOVERY_FSTAB := device/htc/vigor/rootdir/etc/fstab.vigor
-RECOVERY_FSTAB_VERSION := 2
 BOARD_HAS_NO_SELECT_BUTTON := true
 BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_15x24.h\"
+COMMON_GLOBAL_CFLAGS += -DRECOVERY_CANT_USE_CONFIG_EXT4_FS_XATTR
+USE_SET_METADATA := false
